@@ -62,14 +62,15 @@ jobs:
           ci-repository: flask-demo-kustomize
           # The fully qualified remote reference, a branch or a tag. Default is 'refs/heads/main' but can be a branch, i.e. 'refs/heads/dev-branch' or a tag, i.e. 'refs/tags/2021.3', or any valid reference.
 
-          ci-ref: # optional, default is refs/heads/main
+          ci-ref: refs/heads/master
           # A user that can access the repository
-          ci-user: 
+          ci-user: myitsite
           # The repository user's token
-          ci-user-token: 
+          ci-user-token: ${{ secrets.CI_TOKEN }}
           # The name of the remote CI process. In the case of a GitHub workflow this is the name of the workflow (the assigned name in the workflow file, not its filename)
-
-          ci-name: # optional, default is no-such-name
+          ci-name: CI
           # A space-separated set of inputs and values for the remote CI process. i.e. 'x=100 y=200'
 
-          ci-inputs: # optional, default is no-such-input=1
+          ci-inputs: >-
+            image=${{ secrets.USERNAME }}/flask-demo
+            sha-tag=${{ github.sha }}
